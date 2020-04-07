@@ -1,0 +1,2 @@
+rootProject.name='OederMealApp'
+include ':app'

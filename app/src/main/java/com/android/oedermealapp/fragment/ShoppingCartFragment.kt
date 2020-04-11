@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.oedermealapp.R
-import com.android.oedermealapp.activity.OrderFormActivity
+import com.android.oedermealapp.activity.AddOrderFormActivity
 import com.android.oedermealapp.adapter.ShoppingListAdapter
 import com.android.oedermealapp.data.LocalStore
 import com.android.oedermealapp.event.RefreshEvent
@@ -19,7 +18,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class ShoppingFragment : Fragment() {
+class ShoppingCartFragment : Fragment() {
 
     private var price = 0
     private val adapter: ShoppingListAdapter = ShoppingListAdapter()
@@ -73,7 +72,7 @@ class ShoppingFragment : Fragment() {
     private fun initClick() {
         commit?.setOnClickListener { v: View? ->
             if (price > 0) {
-                startActivity(Intent(activity, OrderFormActivity::class.java))
+                startActivity(Intent(activity, AddOrderFormActivity::class.java))
             } else {
                 Toast.makeText(activity, "请先选择餐品再结算", Toast.LENGTH_SHORT).show()
             }

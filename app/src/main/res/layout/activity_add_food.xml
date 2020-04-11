@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gary"
-    tools:context=".activity.AddFoodActivity">
+    tools:context=".activity.AddMealActivity">
 
     <View
         android:layout_width="match_parent"

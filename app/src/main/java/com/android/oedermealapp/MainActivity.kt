@@ -1,12 +1,12 @@
 package com.android.oedermealapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.frameworktool.util.onSingleClick
-import com.android.oedermealapp.fragment.MineFragment
-import com.android.oedermealapp.fragment.OrderFragment
-import com.android.oedermealapp.fragment.ShoppingFragment
+import com.android.oedermealapp.adapter.PagerAdapter
+import com.android.oedermealapp.fragment.MineInformationFragment
+import com.android.oedermealapp.fragment.OrderMealFragment
+import com.android.oedermealapp.fragment.ShoppingCartFragment
 import com.tencent.mmkv.MMKV
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,35 +14,21 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val roomId: Int = 1
     }
-
     private var fragmentList: List<Fragment>? = null
-    private var fragmentIndex: Int = -1
+    private var adapter: PagerAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         MMKV.initialize(this)
+        adapter = PagerAdapter(supportFragmentManager)
+        tabLayout.setupWithViewPager(tabViewpager)
         fragmentList = listOf(
-            OrderFragment(),
-            ShoppingFragment(),
-            MineFragment()
+            OrderMealFragment(),
+            ShoppingCartFragment(),
+            MineInformationFragment()
         )
-        orderTab.onSingleClick {
-            switchPage(0)
-        }
-        shoppingTab.onSingleClick {
-            switchPage(1)
-        }
-        mineTab.onSingleClick {
-            switchPage(2)
-        }
-        switchPage(0)
+        adapter?.setFragments(fragmentList)
+        tabViewpager.adapter=adapter
     }
 
-
-    private fun switchPage(index: Int) {
-        if (fragmentList == null || fragmentIndex == index) return
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragmentList!![index])
-            .commit()
-        fragmentIndex = index
-    }
 }

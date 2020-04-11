@@ -1,10 +1,9 @@
 package com.android.oedermealapp.holder
 
-import android.util.Log
 import android.view.View
 import com.android.frameworktool.recycler.BaseRecyclerViewHolder
 import com.android.frameworktool.util.loadImage
-import com.android.oedermealapp.bean.FoodBean
+import com.android.oedermealapp.bean.MealBean
 import com.android.oedermealapp.event.RefreshEvent
 import com.android.oedermealapp.util.ShoppingUtil
 import kotlinx.android.synthetic.main.layout_holder_shopping.view.*
@@ -15,7 +14,7 @@ class ShoppingListHolder(itemView: View) :
     private var num = 0
     override fun config(model: Any?) {
         super.config(model)
-        if (model is FoodBean) {
+        if (model is MealBean) {
             itemView.foodName.text = model.name
             num = model.num
             itemView.foodNum.text = num.toString() + ""
@@ -26,14 +25,14 @@ class ShoppingListHolder(itemView: View) :
             itemView.foodAdd.setOnClickListener { v: View? ->
                 num++
                 itemView.foodNum.text = num.toString() + ""
-                addFood(model as FoodBean?, true)
+                addFood(model as MealBean?, true)
                 EventBus.getDefault().post(RefreshEvent())
             }
             itemView.foodDelete.setOnClickListener {
                 if (num > 0) {
                     num--
                     itemView.foodNum.text = num.toString() + ""
-                    addFood(model as FoodBean?, false)
+                    addFood(model as MealBean?, false)
                     EventBus.getDefault().post(RefreshEvent())
                 }
             }
@@ -48,7 +47,7 @@ class ShoppingListHolder(itemView: View) :
 
     }
 
-    private fun addFood(model: FoodBean?, isAdd: Boolean) {
+    private fun addFood(model: MealBean?, isAdd: Boolean) {
         ShoppingUtil.addFood(model, isAdd)
     }
 }

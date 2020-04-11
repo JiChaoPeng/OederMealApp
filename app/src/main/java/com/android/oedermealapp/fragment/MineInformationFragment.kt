@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.android.oedermealapp.R
-import com.android.oedermealapp.activity.AddFoodActivity
-import com.android.oedermealapp.activity.LoginActivity
+import com.android.oedermealapp.activity.AddMealActivity
+import com.android.oedermealapp.activity.SignInActivity
 import com.android.oedermealapp.bean.UserBean
 import com.android.oedermealapp.data.LocalStore
 import com.android.oedermealapp.util.AlertCallBack
@@ -18,7 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_mine.*
 
-class MineFragment : Fragment() {
+class MineInformationFragment : Fragment() {
 
     private var bean: UserBean? = null
     override fun onCreateView(
@@ -44,12 +44,12 @@ class MineFragment : Fragment() {
         }
         login!!.setOnClickListener {
             startActivity(
-                Intent(activity, LoginActivity::class.java)
+                Intent(activity, SignInActivity::class.java)
             )
         }
         addFood!!.setOnClickListener {
             startActivity(
-                Intent(activity, AddFoodActivity::class.java)
+                Intent(activity, AddMealActivity::class.java)
             )
         }
     }

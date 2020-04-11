@@ -1,6 +1,6 @@
 package com.android.oedermealapp.bean
 
-class FoodBean {
+class MealBean {
     var name: String
     var content: String
     var price: Int

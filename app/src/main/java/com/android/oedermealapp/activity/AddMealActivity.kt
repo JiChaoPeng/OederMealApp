@@ -12,8 +12,8 @@ import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
 import com.android.oedermealapp.MainActivity.Companion.roomId
 import com.android.oedermealapp.R
-import com.android.oedermealapp.bean.FoodBean
-import com.android.oedermealapp.bean.ResultBean
+import com.android.oedermealapp.bean.MealBean
+import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.bean.ResultModel
 import com.android.oedermealapp.net.NetWork.Companion.netWork
 import com.android.oedermealapp.util.ToastUtils
@@ -26,20 +26,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-class AddFoodActivity : BaseActivity() {
+class AddMealActivity : BaseActivity() {
 
     private var imageUrl: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
-        initClick()
-    }
-
-    override fun getContentView(): Int {
-        return R.layout.activity_add_food
-    }
-
-    private fun initView() {
         titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColorWhite))
         titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme))
         titleBar.setLeftOptionImageVisible(true)
@@ -47,9 +38,6 @@ class AddFoodActivity : BaseActivity() {
         titleBar.leftOptionEvent = {
             finish()
         }
-    }
-
-    private fun initClick() {
         upLoad.setOnClickListener { v: View? ->
             imageUrl = null
             val intent1 = Intent(Intent.ACTION_PICK)
@@ -58,40 +46,44 @@ class AddFoodActivity : BaseActivity() {
         }
         addFood.setOnClickListener { v: View? ->
             if (foodName.text == null || TextUtils.isEmpty(foodName.text)) {
-                ToastUtils.showToast(this@AddFoodActivity, "名称不能为空！")
+                ToastUtils.showToast(this@AddMealActivity, "名称不能为空！")
             } else if (foodContent.text == null || TextUtils.isEmpty(foodContent.text)) {
-                ToastUtils.showToast(this@AddFoodActivity, "内容不能为空！")
+                ToastUtils.showToast(this@AddMealActivity, "内容不能为空！")
             } else if (foodPrice.text == null || TextUtils.isEmpty(foodPrice.text)) {
-                ToastUtils.showToast(this@AddFoodActivity, "价格不能为空！")
+                ToastUtils.showToast(this@AddMealActivity, "价格不能为空！")
             } else {
                 addFood()
             }
         }
     }
 
+    override fun getContentView(): Int {
+        return R.layout.activity_add_food
+    }
+
     private fun addFood() {
         netWork.networkServices.addFood(
             foodName!!.text.toString(), foodContent!!.text.toString(),
             foodPrice!!.text.toString(), "", imageUrl, roomId
-        ).enqueue(object : Callback<ResultBean<FoodBean?>?> {
+        ).enqueue(object : Callback<ResultT<MealBean?>?> {
             override fun onResponse(
-                call: Call<ResultBean<FoodBean?>?>,
-                response: Response<ResultBean<FoodBean?>?>
+                call: Call<ResultT<MealBean?>?>,
+                response: Response<ResultT<MealBean?>?>
             ) {
                 Log.d("BaseButterKnife1", "onResponse")
                 if (response.body() != null && response.body()?.isSucceed == true) {
-                    Toast.makeText(this@AddFoodActivity, "添加成功！", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddMealActivity, "添加成功！", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    ToastUtils.showToast(this@AddFoodActivity, "添加失败 请重试！")
+                    ToastUtils.showToast(this@AddMealActivity, "添加失败 请重试！")
                 }
             }
 
             override fun onFailure(
-                call: Call<ResultBean<FoodBean?>?>,
+                call: Call<ResultT<MealBean?>?>,
                 t: Throwable
             ) {
-                ToastUtils.showToast(this@AddFoodActivity, "网络错误 请重试！")
+                ToastUtils.showToast(this@AddMealActivity, "网络错误 请重试！")
                 Log.d("BaseButterKnife1", "onFailure" + t.cause + t.message)
             }
         })
@@ -106,7 +98,7 @@ class AddFoodActivity : BaseActivity() {
         netWork.networkServices?.upload(files)?.enqueue(object : Callback<ResultModel> {
             override fun onFailure(call: Call<ResultModel>, t: Throwable) {
                 Log.d("AddRoomActivity", "faild ${t.message} ${t.cause}")
-                ToastUtils.showToast(this@AddFoodActivity, "网络错误！")
+                ToastUtils.showToast(this@AddMealActivity, "网络错误！")
             }
 
             override fun onResponse(call: Call<ResultModel>, response: Response<ResultModel>) {
@@ -114,7 +106,7 @@ class AddFoodActivity : BaseActivity() {
                 if (response.isSuccessful) {
                     imageUrl = response.body()?.data
                 } else {
-                    ToastUtils.showToast(this@AddFoodActivity, "上传图片失败")
+                    ToastUtils.showToast(this@AddMealActivity, "上传图片失败")
                 }
             }
         })

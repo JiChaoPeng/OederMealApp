@@ -1,6 +1,6 @@
 package com.android.oedermealapp.bean
 
-class ResultBean<T> {
+class ResultT<T> {
     val isSucceed: Boolean
         get() = resultCode == 200
     var resultCode = 0

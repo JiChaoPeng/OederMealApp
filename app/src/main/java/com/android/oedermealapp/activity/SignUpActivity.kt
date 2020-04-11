@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
 import com.android.oedermealapp.R
-import com.android.oedermealapp.bean.ResultBean
+import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.bean.ResultModel
 import com.android.oedermealapp.bean.UserBean
 import com.android.oedermealapp.net.NetWork.Companion.netWork
@@ -25,7 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-open class CreateAccountActivity : BaseActivity() {
+open class SignUpActivity : BaseActivity() {
     private var imageUrl: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,25 +69,25 @@ open class CreateAccountActivity : BaseActivity() {
         netWork.networkServices.signUp(
             loginAccount!!.text.toString(), loginPassword!!.text.toString(),
             0, 0, loginAccount!!.text.toString(), 0, imageUrl
-        ).enqueue(object : Callback<ResultBean<UserBean?>?> {
+        ).enqueue(object : Callback<ResultT<UserBean?>?> {
             override fun onResponse(
-                call: Call<ResultBean<UserBean?>?>,
-                response: Response<ResultBean<UserBean?>?>
+                call: Call<ResultT<UserBean?>?>,
+                response: Response<ResultT<UserBean?>?>
             ) {
                 Log.d("BaseButterKnife1", "onResponse")
                 if (response.body() != null && response.body()?.isSucceed == true) {
-                    ToastUtils.showToast(this@CreateAccountActivity, "注册成功！")
+                    ToastUtils.showToast(this@SignUpActivity, "注册成功！")
                     finish()
                 }else{
-                    ToastUtils.showToast(this@CreateAccountActivity, "注册失败 请重试！")
+                    ToastUtils.showToast(this@SignUpActivity, "注册失败 请重试！")
                 }
             }
 
             override fun onFailure(
-                call: Call<ResultBean<UserBean?>?>,
+                call: Call<ResultT<UserBean?>?>,
                 t: Throwable
             ) {
-                ToastUtils.showToast(this@CreateAccountActivity, "网络错误！")
+                ToastUtils.showToast(this@SignUpActivity, "网络错误！")
                 Log.d("BaseButterKnife1", "onFailure" + t.cause + t.message)
             }
         })

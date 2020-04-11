@@ -1,8 +1,8 @@
 package com.android.oedermealapp.net;
 
-import com.android.oedermealapp.bean.FoodBean;
+import com.android.oedermealapp.bean.MealBean;
 import com.android.oedermealapp.bean.FoodListBean;
-import com.android.oedermealapp.bean.ResultBean;
+import com.android.oedermealapp.bean.ResultT;
 import com.android.oedermealapp.bean.ResultModel;
 import com.android.oedermealapp.bean.UserBean;
 
@@ -20,7 +20,7 @@ import retrofit2.http.Part;
 public interface NetWorkServices {
     @FormUrlEncoded
     @POST("order/v1/signUp")
-    Call<ResultBean<UserBean>> signUp(
+    Call<ResultT<UserBean>> signUp(
             @Field("account") String account,
             @Field("password") String password,
             @Field("level") int level,
@@ -31,13 +31,13 @@ public interface NetWorkServices {
 
     @FormUrlEncoded
     @POST("order/v1/signIn")
-    Call<ResultBean<UserBean>> signIn(
+    Call<ResultT<UserBean>> signIn(
             @Field("account") String account,
             @Field("password") String password);
 
     @FormUrlEncoded
     @POST("/order/v1/food/add")
-    Call<ResultBean<FoodBean>> addFood(
+    Call<ResultT<MealBean>> addFood(
             @Field("name") String name,
             @Field("content") String content,
             @Field("price") String price,
@@ -47,12 +47,12 @@ public interface NetWorkServices {
 
     @FormUrlEncoded
     @POST("/order/v1/food/allbyid")
-    Call<ResultBean<FoodListBean>> allFoodByRoomId(
+    Call<ResultT<FoodListBean>> allFoodByRoomId(
             @Field("roomId") String roomId);
 
     @FormUrlEncoded
     @POST("/order/v1/food/all")
-    Call<ResultBean<FoodListBean>> allFood(
+    Call<ResultT<FoodListBean>> allFood(
             @Field("roomId") String roomId);
 
     @Multipart

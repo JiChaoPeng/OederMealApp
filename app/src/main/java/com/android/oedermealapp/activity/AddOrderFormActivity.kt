@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.frameworktool.base.BaseActivity
 import com.android.oedermealapp.R
 import com.android.oedermealapp.adapter.OrderFormAdapter
-import com.android.oedermealapp.bean.FoodBean
+import com.android.oedermealapp.bean.MealBean
 import com.android.oedermealapp.data.LocalStore
 import kotlinx.android.synthetic.main.activity_order_form.*
 import java.util.*
 
-class OrderFormActivity : BaseActivity() {
+class AddOrderFormActivity : BaseActivity() {
     private var allPrice = 0
     private val adapter: OrderFormAdapter = OrderFormAdapter()
 
@@ -40,15 +40,15 @@ class OrderFormActivity : BaseActivity() {
         val layout = LinearLayoutManager(this)
         layout.orientation = LinearLayoutManager.VERTICAL
         recyclerView!!.layoutManager = layout
-        val foodBeans: ArrayList<FoodBean> = ArrayList()
+        val mealBeans: ArrayList<MealBean> = ArrayList()
         LocalStore.shopping.value?.let {
             for (model in it.list) {
                 if (model.isChecked) {
-                    foodBeans.add(model)
+                    mealBeans.add(model)
                     allPrice += model.price * model.num
                 }
             }
-            adapter.modelList.addAll(foodBeans)
+            adapter.modelList.addAll(mealBeans)
             adapter.notifyDataSetChanged()
             price.text = "总价 ： ￥ $allPrice"
         }

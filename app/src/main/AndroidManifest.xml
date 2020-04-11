@@ -22,16 +22,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.AddFoodActivity"
+            android:name=".activity.AddMealActivity"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.SignInActivity"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".activity.CreateAccountActivity"
+            android:name=".activity.SignUpActivity"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".activity.OrderFormActivity"
+            android:name=".activity.AddOrderFormActivity"
             android:screenOrientation="nosensor" />
     </application>
 

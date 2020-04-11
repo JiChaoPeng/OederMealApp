@@ -11,7 +11,7 @@ import com.android.oedermealapp.MainActivity.Companion.roomId
 import com.android.oedermealapp.R
 import com.android.oedermealapp.adapter.OrderListAdapter
 import com.android.oedermealapp.bean.FoodListBean
-import com.android.oedermealapp.bean.ResultBean
+import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.data.LocalStore
 import com.android.oedermealapp.net.NetWork.Companion.netWork
 import com.android.oedermealapp.util.ToastUtils
@@ -20,7 +20,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class OrderFragment : Fragment() {
+class OrderMealFragment : Fragment() {
 
     private val adapter: OrderListAdapter = OrderListAdapter()
     override fun onCreateView(
@@ -39,10 +39,10 @@ class OrderFragment : Fragment() {
 
     private fun initData() {
         netWork.networkServices.allFood(roomId.toString())
-            .enqueue(object : Callback<ResultBean<FoodListBean?>?> {
+            .enqueue(object : Callback<ResultT<FoodListBean?>?> {
                 override fun onResponse(
-                    call: Call<ResultBean<FoodListBean?>?>,
-                    response: Response<ResultBean<FoodListBean?>?>
+                    call: Call<ResultT<FoodListBean?>?>,
+                    response: Response<ResultT<FoodListBean?>?>
                 ) {
                     Log.d("BaseButterKnife1", "onResponse")
                     if (response.body() != null && response.body()?.isSucceed == true) {
@@ -69,7 +69,7 @@ class OrderFragment : Fragment() {
                 }
 
                 override fun onFailure(
-                    call: Call<ResultBean<FoodListBean?>?>,
+                    call: Call<ResultT<FoodListBean?>?>,
                     t: Throwable
                 ) {
                     ToastUtils.showToast(activity, "网络错误")

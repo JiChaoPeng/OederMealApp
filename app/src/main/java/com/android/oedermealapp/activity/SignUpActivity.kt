@@ -87,7 +87,7 @@ open class SignUpActivity : BaseActivity() {
                 call: Call<ResultT<UserBean?>?>,
                 t: Throwable
             ) {
-                ToastUtils.showToast(this@SignUpActivity, "网络错误！")
+                ToastUtils.showToast(this@SignUpActivity, "网络错误 请重试！")
                 Log.d("BaseButterKnife1", "onFailure" + t.cause + t.message)
             }
         })
@@ -126,11 +126,17 @@ open class SignUpActivity : BaseActivity() {
         netWork.networkServices?.upload(files)?.enqueue(object : Callback<ResultModel> {
             override fun onFailure(call: Call<ResultModel>, t: Throwable) {
                 Log.d("AddRoomActivity", "faild ${t.message} ${t.cause}")
+                ToastUtils.showToast(this@SignUpActivity, "网络错误！请重试")
             }
 
             override fun onResponse(call: Call<ResultModel>, response: Response<ResultModel>) {
                 Log.d("AddRoomActivity", response.toString())
-                imageUrl = response.body()?.data
+                if (response.body()!=null&&response.isSuccessful&&response.body()?.data!=null){
+                    imageUrl = response.body()?.data
+                    ToastUtils.showToast(this@SignUpActivity, "上传图片成功！")
+                }else{
+                    ToastUtils.showToast(this@SignUpActivity, "上传图片失败 请检查权限以及图片源后重试！")
+                }
             }
 
         })

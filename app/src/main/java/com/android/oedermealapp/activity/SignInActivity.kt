@@ -64,8 +64,8 @@ class SignInActivity : BaseActivity() {
             ) {
                 Log.d("BaseButterKnife1", "onResponse")
                 //services处理是否为正确用户以及密码
-                if (response.body() != null && response.body()?.isSucceed == true) {
-                    LocalStore.localUser?.value = response.body()?.bean
+                if (response.body() != null && response.body()?.isSucceed == true && response.body()?.bean != null) {
+                    LocalStore.localUser.value = response.body()?.bean
                     ToastUtils.showToast(this@SignInActivity, "登陆成功！")
                     finish()
                 } else {

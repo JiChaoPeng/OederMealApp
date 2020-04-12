@@ -18,7 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_mine.*
 
-class MineInformationFragment : Fragment() {
+class MineInformationFragment : BaseFragment() {
 
     private var bean: UserBean? = null
     override fun onCreateView(
@@ -59,7 +59,7 @@ class MineInformationFragment : Fragment() {
         initData()
     }
 
-    private fun initData() {
+    override fun initData() {
         bean = LocalStore.localUser.value
         if (bean != null) { //本地已经存在用户缓存
             mineLayout!!.visibility = View.VISIBLE

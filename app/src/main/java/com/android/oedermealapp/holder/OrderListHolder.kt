@@ -4,8 +4,10 @@ import android.view.View
 import com.android.frameworktool.recycler.BaseRecyclerViewHolder
 import com.android.frameworktool.util.loadImage
 import com.android.oedermealapp.bean.MealBean
+import com.android.oedermealapp.event.RefreshFragmentEvent
 import com.android.oedermealapp.util.ShoppingUtil
 import kotlinx.android.synthetic.main.layout_holder_order.view.*
+import org.greenrobot.eventbus.EventBus
 
 class OrderListHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
     private var num = 0
@@ -37,5 +39,6 @@ class OrderListHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
 
     private fun addFood(model: MealBean?, isAdd: Boolean) {
         ShoppingUtil.addFood(model, isAdd)
+        EventBus.getDefault().post(RefreshFragmentEvent())
     }
 }

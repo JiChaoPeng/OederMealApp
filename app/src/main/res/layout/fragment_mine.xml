@@ -11,19 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+        <ImageView
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
-            android:background="@drawable/avatar_shape">
-
-            <ImageView
-                android:id="@+id/avatar"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:src="@mipmap/ic_launcher_round" />
-        </androidx.cardview.widget.CardView>
+            android:id="@+id/avatar"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/name"
@@ -41,9 +35,10 @@
             android:background="@drawable/button_shape"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:textColor="@color/theme"
             android:text="添加菜单（管理员权限，谨慎添加）"
+            android:textColor="@color/theme"
             android:textSize="15sp" />
+
         <TextView
             android:id="@+id/logOut"
             android:layout_width="match_parent"
@@ -57,12 +52,12 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:id="@+id/loginLayout"
-        android:visibility="gone"
-        android:clickable="true">
+        android:clickable="true"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/login"

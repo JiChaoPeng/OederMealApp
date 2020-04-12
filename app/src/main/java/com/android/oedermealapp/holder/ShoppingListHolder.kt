@@ -5,6 +5,7 @@ import com.android.frameworktool.recycler.BaseRecyclerViewHolder
 import com.android.frameworktool.util.loadImage
 import com.android.oedermealapp.bean.MealBean
 import com.android.oedermealapp.event.RefreshEvent
+import com.android.oedermealapp.event.RefreshFragmentEvent
 import com.android.oedermealapp.util.ShoppingUtil
 import kotlinx.android.synthetic.main.layout_holder_shopping.view.*
 import org.greenrobot.eventbus.EventBus
@@ -49,5 +50,6 @@ class ShoppingListHolder(itemView: View) :
 
     private fun addFood(model: MealBean?, isAdd: Boolean) {
         ShoppingUtil.addFood(model, isAdd)
+        EventBus.getDefault().post(RefreshFragmentEvent())
     }
 }

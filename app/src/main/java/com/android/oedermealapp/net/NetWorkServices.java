@@ -19,7 +19,7 @@ import retrofit2.http.Part;
  */
 public interface NetWorkServices {
     @FormUrlEncoded
-    @POST("order/v1/signUp")
+    @POST("meal/signUp")
     Call<ResultT<UserBean>> signUp(
             @Field("account") String account,
             @Field("password") String password,
@@ -30,13 +30,13 @@ public interface NetWorkServices {
             @Field("imageUrl") String imageUrl);
 
     @FormUrlEncoded
-    @POST("order/v1/signIn")
+    @POST("meal/signIn")
     Call<ResultT<UserBean>> signIn(
             @Field("account") String account,
             @Field("password") String password);
 
     @FormUrlEncoded
-    @POST("/order/v1/food/add")
+    @POST("/meal/add")
     Call<ResultT<MealBean>> addFood(
             @Field("name") String name,
             @Field("content") String content,
@@ -46,17 +46,17 @@ public interface NetWorkServices {
             @Field("roomId") int roomId);
 
     @FormUrlEncoded
-    @POST("/order/v1/food/allbyid")
+    @POST("/meal/allbyid")
     Call<ResultT<FoodListBean>> allFoodByRoomId(
             @Field("roomId") String roomId);
 
     @FormUrlEncoded
-    @POST("/order/v1/food/all")
+    @POST("/meal/all")
     Call<ResultT<FoodListBean>> allFood(
             @Field("roomId") String roomId);
 
     @Multipart
-    @POST("android/v1/food/Upload")
+    @POST("/meal/Upload")
     Call<ResultModel> upload(
             @Part MultipartBody.Part file);
 

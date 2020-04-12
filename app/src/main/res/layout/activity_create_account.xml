@@ -21,11 +21,6 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black_50_alpha" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,16 +46,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="账号： "
-                    android:textColor="@color/textColorWhite" />
+                    android:text="账号： " />
 
                 <EditText
                     android:id="@+id/loginAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="账号： "
-                    android:textColor="@color/textColorWhite"
-                    android:textColorHint="@color/textColorWhite"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -75,8 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="密码："
-                    android:textColor="@color/textColorWhite" />
+                    android:text="密码："/>
 
                 <EditText
                     android:id="@+id/loginPassword"
@@ -84,8 +75,6 @@
                     android:layout_height="wrap_content"
                     android:hint="密码："
                     android:inputType="textPassword"
-                    android:textColor="@color/textColorWhite"
-                    android:textColorHint="@color/textColorWhite"
                     android:textSize="14sp" />
             </LinearLayout>
 

@@ -11,6 +11,7 @@ import com.android.oedermealapp.MainActivity.Companion.roomId
 import com.android.oedermealapp.R
 import com.android.oedermealapp.adapter.OrderListAdapter
 import com.android.oedermealapp.bean.FoodListBean
+import com.android.oedermealapp.bean.MealBean
 import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.data.LocalStore
 import com.android.oedermealapp.net.NetWork.Companion.netWork
@@ -20,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class OrderMealFragment : Fragment() {
+class OrderMealFragment : BaseFragment() {
 
     private val adapter: OrderListAdapter = OrderListAdapter()
     override fun onCreateView(
@@ -34,10 +35,11 @@ class OrderMealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        getData()
         initData()
     }
 
-    private fun initData() {
+    private fun getData() {
         netWork.networkServices.allFood(roomId.toString())
             .enqueue(object : Callback<ResultT<FoodListBean?>?> {
                 override fun onResponse(
@@ -45,7 +47,7 @@ class OrderMealFragment : Fragment() {
                     response: Response<ResultT<FoodListBean?>?>
                 ) {
                     Log.d("BaseButterKnife1", "onResponse")
-                    if (response.body() != null && response.body()?.isSucceed == true) {
+                    if ( response.body()?.bean != null && response.body()?.isSucceed == true ) {
                         adapter.modelList.clear()
                         val bean = response.body()?.bean?.list
                         if (bean != null && LocalStore.shopping.value != null) {
@@ -62,9 +64,8 @@ class OrderMealFragment : Fragment() {
                             adapter.modelList.addAll(bean)
                             adapter.notifyDataSetChanged()
                         }
-
                     } else {
-                        ToastUtils.showToast(activity, "获取数据失败")
+                        ToastUtils.showToast(activity, "数据为空")
                     }
                 }
 
@@ -76,6 +77,19 @@ class OrderMealFragment : Fragment() {
                     Log.d("BaseButterKnife1", "onFailure" + t.cause + t.message)
                 }
             })
+    }
+
+    override fun initData() {
+        val modelList = adapter.modelList
+        for (foodBean in modelList) {
+            for (food in LocalStore.shopping.value!!.list) {
+                if (foodBean is MealBean)
+                if (food.id == foodBean.id) {
+                    foodBean.num = food.num
+                }
+            }
+        }
+        adapter.notifyDataSetChanged()
     }
 
 

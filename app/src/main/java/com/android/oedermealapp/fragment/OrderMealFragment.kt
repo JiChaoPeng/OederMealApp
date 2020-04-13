@@ -47,7 +47,7 @@ class OrderMealFragment : BaseFragment() {
                     response: Response<ResultT<FoodListBean?>?>
                 ) {
                     Log.d("BaseButterKnife1", "onResponse")
-                    if ( response.body()?.bean != null && response.body()?.isSucceed == true ) {
+                    if (response.body()?.bean != null && response.body()?.isSucceed == true) {
                         adapter.modelList.clear()
                         val bean = response.body()?.bean?.list
                         if (bean != null && LocalStore.shopping.value != null) {
@@ -81,15 +81,17 @@ class OrderMealFragment : BaseFragment() {
 
     override fun initData() {
         val modelList = adapter.modelList
-        for (foodBean in modelList) {
-            for (food in LocalStore.shopping.value!!.list) {
-                if (foodBean is MealBean)
-                if (food.id == foodBean.id) {
-                    foodBean.num = food.num
+        if (modelList.size > 0 && LocalStore.shopping.value != null) {
+            for (foodBean in modelList) {
+                for (food in LocalStore.shopping.value!!.list) {
+                    if (foodBean is MealBean)
+                        if (food.id == foodBean.id) {
+                            foodBean.num = food.num
+                        }
                 }
             }
+            adapter.notifyDataSetChanged()
         }
-        adapter.notifyDataSetChanged()
     }
 
 

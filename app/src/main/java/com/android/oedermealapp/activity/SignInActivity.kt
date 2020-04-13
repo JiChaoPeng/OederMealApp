@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
@@ -120,7 +121,8 @@ class SignInActivity : BaseActivity() {
             } else {
                 startActivity(Intent(this, MainActivity::class.java))
             }
+            finish()
         }
-        finish()
+        image.visibility= View.GONE
     }
 }

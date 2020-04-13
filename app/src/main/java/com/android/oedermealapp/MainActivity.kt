@@ -37,23 +37,7 @@ class MainActivity : BaseActivity() {
         titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColorWhite))
         titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme))
         titleBar.setTitle(resources.getString(R.string.app_name))
-        MMKV.initialize(this)
-        //申请权限
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ),
-                0
-            )
-        }
+
         adapter = PagerAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(tabViewpager)
         fragmentList = listOf(
@@ -79,6 +63,10 @@ class MainActivity : BaseActivity() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     override fun onPause() {

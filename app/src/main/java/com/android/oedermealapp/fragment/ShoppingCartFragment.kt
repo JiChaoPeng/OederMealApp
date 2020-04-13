@@ -37,8 +37,10 @@ class ShoppingCartFragment : BaseFragment() {
         initPrice()
     }
 
-
     private fun initPrice() {
+        adapter.modelList.clear()
+        adapter.addModels(LocalStore.shopping.value?.list)
+        adapter.notifyDataSetChanged()
         price = 0
         LocalStore.shopping.value?.let {
             for (model in LocalStore.shopping.value!!.list) {
@@ -54,6 +56,7 @@ class ShoppingCartFragment : BaseFragment() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
+        initPrice()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -91,8 +94,6 @@ class ShoppingCartFragment : BaseFragment() {
         val layout = LinearLayoutManager(context)
         layout.orientation = LinearLayoutManager.VERTICAL
         recyclerView!!.layoutManager = layout
-        adapter.modelList.clear()
-        adapter.addModels(LocalStore.shopping.value?.list)
-        adapter.notifyDataSetChanged()
+
     }
 }

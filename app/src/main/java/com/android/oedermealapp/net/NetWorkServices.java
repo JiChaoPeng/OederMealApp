@@ -1,5 +1,7 @@
 package com.android.oedermealapp.net;
 
+import com.android.oedermealapp.bean.FormBean;
+import com.android.oedermealapp.bean.FormListBean;
 import com.android.oedermealapp.bean.MealBean;
 import com.android.oedermealapp.bean.FoodListBean;
 import com.android.oedermealapp.bean.ResultT;
@@ -60,4 +62,21 @@ public interface NetWorkServices {
     Call<ResultModel> upload(
             @Part MultipartBody.Part file);
 
+    @FormUrlEncoded
+    @POST("/form/all/ownername")
+    Call<ResultT<FormListBean>> allForm(
+            @Field("ownerName") String ownerName);
+
+    @FormUrlEncoded
+    @POST("/form/add")
+    Call<ResultT<FormBean>> addForm(
+            @Field("price") int price,
+            @Field("owner_name") String owner_name,
+            @Field("seat_id") int seat_id,
+            @Field("comment") String comment,
+            @Field("commentStar") int commentStar,
+            @Field("foodDetail") String foodDetail,
+            @Field("isFinish") int isFinish,
+            @Field("isPay") int isPay,
+            @Field("time") long time);
 }

@@ -123,6 +123,5 @@ class SignInActivity : BaseActivity() {
             }
             finish()
         }
-        image.visibility= View.GONE
     }
 }

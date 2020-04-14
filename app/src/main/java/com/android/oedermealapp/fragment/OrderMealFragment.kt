@@ -83,6 +83,7 @@ class OrderMealFragment : BaseFragment() {
         val modelList = adapter.modelList
         if (modelList.size > 0 && LocalStore.shopping.value != null) {
             for (foodBean in modelList) {
+                (foodBean as? MealBean)?.num = 0
                 for (food in LocalStore.shopping.value!!.list) {
                     if (foodBean is MealBean)
                         if (food.id == foodBean.id) {

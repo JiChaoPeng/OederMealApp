@@ -28,14 +28,14 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/addFood"
+            android:id="@+id/myForm"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/button_shape"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:text="添加菜单（管理员权限，谨慎添加）"
+            android:text="我的订单"
             android:textColor="@color/theme"
             android:textSize="15sp" />
 

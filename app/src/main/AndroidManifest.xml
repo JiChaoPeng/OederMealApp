@@ -14,17 +14,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ManagerActivity" android:screenOrientation="nosensor"/>
+        <activity
+            android:name=".activity.ManagerActivity"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.SignInActivity"
-            android:theme="@style/SplashTheme"
             android:screenOrientation="nosensor">
+
+        </activity>
+        <activity
+            android:name=".activity.FormListActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.AdminActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="nosensor"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.FormDetailActivity" android:screenOrientation="nosensor"/>
+        <activity
+            android:name=".activity.WaiterActivity"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.AddMealActivity"
             android:screenOrientation="nosensor" />
@@ -38,9 +55,6 @@
             android:name=".activity.AddOrderFormActivity"
             android:screenOrientation="nosensor"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".activity.FormListActivity"
-            android:screenOrientation="nosensor" />
     </application>
 
 </manifest>

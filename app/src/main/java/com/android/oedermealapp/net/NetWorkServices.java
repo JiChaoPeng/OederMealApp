@@ -67,6 +67,18 @@ public interface NetWorkServices {
     Call<ResultT<FormListBean>> allForm(
             @Field("ownerName") String ownerName);
 
+
+    @POST("/form/all")
+    Call<ResultT<FormListBean>> allForm();
+
+    @FormUrlEncoded
+    @POST("/form/finish")
+    Call<ResultModel> finishForm(@Field("id") int id);
+
+    @FormUrlEncoded
+    @POST("/form/pay")
+    Call<ResultModel> payForm(@Field("id") int id);
+
     @FormUrlEncoded
     @POST("/form/add")
     Call<ResultT<FormBean>> addForm(

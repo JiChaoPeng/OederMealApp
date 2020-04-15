@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.android.oedermealapp.R
 import com.android.oedermealapp.activity.AddMealActivity
+import com.android.oedermealapp.activity.FormListActivity
 import com.android.oedermealapp.activity.SignInActivity
+import com.android.oedermealapp.activity.SplashActivity
 import com.android.oedermealapp.bean.UserBean
 import com.android.oedermealapp.data.LocalStore
 import com.android.oedermealapp.util.AlertCallBack
@@ -36,20 +38,21 @@ class MineInformationFragment : BaseFragment() {
                 override fun neutralButton() {
                     LocalStore.localUser.value = null
                     name!!.text = ""
-                    initData()
+                    Intent(activity, SplashActivity::class.java)
+                    activity?.finish()
                 }
 
                 override fun negativeButton() {}
             })
         }
-        login!!.setOnClickListener {
+        login.setOnClickListener {
             startActivity(
                 Intent(activity, SignInActivity::class.java)
             )
         }
-        addFood!!.setOnClickListener {
+        myForm.setOnClickListener {
             startActivity(
-                Intent(activity, AddMealActivity::class.java)
+                Intent(activity, FormListActivity::class.java)
             )
         }
     }

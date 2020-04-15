@@ -1,21 +1,15 @@
 package com.android.oedermealapp
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import com.android.frameworktool.base.BaseActivity
 import com.android.oedermealapp.adapter.PagerAdapter
-import com.android.oedermealapp.event.RefreshEvent
 import com.android.oedermealapp.event.RefreshFragmentEvent
 import com.android.oedermealapp.fragment.BaseFragment
 import com.android.oedermealapp.fragment.MineInformationFragment
 import com.android.oedermealapp.fragment.OrderMealFragment
 import com.android.oedermealapp.fragment.ShoppingCartFragment
-import com.tencent.mmkv.MMKV
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -24,6 +18,10 @@ import org.greenrobot.eventbus.ThreadMode
 class MainActivity : BaseActivity() {
     companion object {
         const val roomId: Int = 1
+        const val LevelNormal = 0
+        const val LevelWaiter = 1
+        const val LevelCook = 2
+        const val Root = "111"
     }
 
     private var fragmentList: List<Fragment>? = null

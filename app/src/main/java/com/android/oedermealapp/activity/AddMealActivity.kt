@@ -31,7 +31,7 @@ class AddMealActivity : BaseActivity() {
     private var imageUrl: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColorWhite))
+        titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.text_black))
         titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme))
         titleBar.setLeftOptionImageVisible(true)
         titleBar.setTitle("添加菜单")

@@ -1,7 +1,9 @@
 package com.android.oedermealapp.bean;
 
 
-public class FormBean {
+import java.io.Serializable;
+
+public class FormBean implements Serializable {
     private int price;
     private String ownerName;
     private int seat_id;
@@ -11,12 +13,13 @@ public class FormBean {
     private int isFinish;
     private int isPay;
     private long time;
+    private int id;
 
     public FormBean() {
 
     }
 
-    public FormBean(int price, String ownerName, int seat_id, String comment, int commentStar, String foodDetail, int isFinish, int isPay, long time) {
+    public FormBean(int price, String ownerName, int seat_id, String comment, int commentStar, String foodDetail, int isFinish, int isPay, long time, int id) {
         this.price = price;
         this.ownerName = ownerName;
         this.seat_id = seat_id;
@@ -26,6 +29,15 @@ public class FormBean {
         this.isFinish = isFinish;
         this.isPay = isPay;
         this.time = time;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPrice() {

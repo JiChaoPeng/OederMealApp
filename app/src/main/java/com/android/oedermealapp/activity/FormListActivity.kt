@@ -3,6 +3,7 @@ package com.android.oedermealapp.activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.frameworktool.base.BaseActivity
 import com.android.oedermealapp.R
@@ -12,6 +13,9 @@ import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.data.LocalStore
 import com.android.oedermealapp.net.NetWork
 import kotlinx.android.synthetic.main.activity_form_list.*
+import kotlinx.android.synthetic.main.activity_form_list.recyclerView
+import kotlinx.android.synthetic.main.activity_form_list.titleBar
+import kotlinx.android.synthetic.main.activity_order_form.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +28,12 @@ class FormListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme))
+        titleBar.setTitle("我的订单")
+        titleBar.setLeftOptionImageVisible(true)
+        titleBar.leftOptionEvent = {
+            finish()
+        }
         recyclerView.adapter = adapter
         val layout = LinearLayoutManager(this)
         layout.orientation = LinearLayoutManager.VERTICAL

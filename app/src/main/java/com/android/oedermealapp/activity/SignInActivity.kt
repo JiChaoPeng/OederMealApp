@@ -30,32 +30,14 @@ class SignInActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColorWhite))
+        titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.text_black))
         titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme))
         titleBar.setTitle("登陆")
         titleBar.setLeftOptionImageVisible(true)
         titleBar.leftOptionEvent = {
             finish()
         }
-        MMKV.initialize(this)
-        //申请权限
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ),
-                0
-            )
-        }
         initClick()
-        startMain()
     }
 
     private fun initClick() {
@@ -73,9 +55,9 @@ class SignInActivity : BaseActivity() {
         } else if (loginPassword!!.text == null || TextUtils.isEmpty(loginPassword!!.text)) {
             ToastUtils.showToast(this@SignInActivity, "密码不能为空！")
         } else {
-            if (loginAccount.text.toString() == "root" && loginPassword.text.toString() == "root") {
-                LocalStore.localUser.value=UserBean("111", "111", "", 2, 0, 0, 2)
-                startMain()
+            if (loginAccount.text.toString() == MainActivity.Root && loginPassword.text.toString() ==  MainActivity.Root) {
+                LocalStore.localUser.value=UserBean( MainActivity.Root,  MainActivity.Root, "", 3, 0, 0, 2)
+                finish()
             } else {
                 login()
             }
@@ -96,7 +78,6 @@ class SignInActivity : BaseActivity() {
                 if (response.body() != null && response.body()?.isSucceed == true && response.body()?.bean != null) {
                     LocalStore.localUser.value = response.body()?.bean
                     ToastUtils.showToast(this@SignInActivity, "登陆成功！")
-                    startMain()
                     finish()
                 } else {
                     ToastUtils.showToast(this@SignInActivity, "登陆失败！")
@@ -111,17 +92,5 @@ class SignInActivity : BaseActivity() {
                 Log.d("BaseButterKnife1", "onFailure" + t.cause + t.message)
             }
         })
-    }
-
-    private fun startMain() {
-        val bean = LocalStore.localUser.value
-        if (bean != null) { //本地已经存在用户缓存
-            if (bean.account == "111" && bean.password == "111") {
-                startActivity(Intent(this, MainActivity::class.java))
-            } else {
-                startActivity(Intent(this, MainActivity::class.java))
-            }
-            finish()
-        }
     }
 }

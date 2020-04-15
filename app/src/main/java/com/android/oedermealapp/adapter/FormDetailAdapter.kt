@@ -6,10 +6,9 @@ import com.android.frameworktool.recycler.BaseRecyclerViewHolder
 import com.android.frameworktool.util.appInflate
 import com.android.oedermealapp.R
 import com.android.oedermealapp.bean.MealBean
-import com.android.oedermealapp.holder.FormListHolder
-import com.android.oedermealapp.holder.OrderListHolder
+import com.android.oedermealapp.holder.FormDetailHolder
 
-class FormListAdapter : BaseRecyclerAdapter() {
+class FormDetailAdapter : BaseRecyclerAdapter() {
     init {
         modelList.apply {
             add(MealBean::class.java)
@@ -21,7 +20,7 @@ class FormListAdapter : BaseRecyclerAdapter() {
         viewType: Int
     ): BaseRecyclerViewHolder {
         val creator =
-            FormListHolder(parent.appInflate(R.layout.layout_holder_form_list, false))
+            FormDetailHolder(parent.appInflate(R.layout.layout_holder_form_detail, false))
         creator.bindViewClickEvent(viewHolderConfig)
         return creator
     }

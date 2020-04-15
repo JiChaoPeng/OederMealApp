@@ -1,7 +1,6 @@
 package com.android.oedermealapp.holder
 
 import android.view.View
-import android.widget.TextView
 import com.android.frameworktool.recycler.BaseRecyclerViewHolder
 import com.android.oedermealapp.bean.FoodListBean
 import com.android.oedermealapp.bean.FormBean

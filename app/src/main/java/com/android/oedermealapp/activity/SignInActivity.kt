@@ -56,7 +56,7 @@ class SignInActivity : BaseActivity() {
             ToastUtils.showToast(this@SignInActivity, "密码不能为空！")
         } else {
             if (loginAccount.text.toString() == MainActivity.Root && loginPassword.text.toString() ==  MainActivity.Root) {
-                LocalStore.localUser.value=UserBean( MainActivity.Root,  MainActivity.Root, "", 3, 0, 0, 2)
+                LocalStore.localUser.value=UserBean( MainActivity.Root,  MainActivity.Root, "", 3, 0, 0, 2,10000)
                 finish()
             } else {
                 login()

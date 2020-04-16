@@ -29,6 +29,12 @@
             android:name=".activity.AdminActivity"
             android:screenOrientation="nosensor" />
         <activity
+            android:name=".activity.AccountListActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".activity.AdminAccountActivity"
+            android:screenOrientation="nosensor" />
+        <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="nosensor"
             android:theme="@style/SplashTheme">

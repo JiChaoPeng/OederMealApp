@@ -6,6 +6,9 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
 import com.android.oedermealapp.R
+import com.android.oedermealapp.data.LocalStore
+import com.android.oedermealapp.util.AlertCallBack
+import com.android.oedermealapp.util.AlertUtil
 import kotlinx.android.synthetic.main.activity_admin.*
 
 class AdminActivity : BaseActivity() {
@@ -22,10 +25,21 @@ class AdminActivity : BaseActivity() {
             WaiterActivity.isWaiter = false
             startActivity(Intent(this, WaiterActivity::class.java))
         }
-        managerAccount.setOnClickListener { v: View? -> }
+        managerAccount.setOnClickListener { v: View? -> startActivity(Intent(this, AccountListActivity::class.java))}
         managerWaiter.setOnClickListener { v: View? ->
             WaiterActivity.isWaiter = true
             startActivity(Intent(this, WaiterActivity::class.java))
+        }
+        logOut.setOnClickListener { v: View? ->
+            AlertUtil.showAlert(this, "退出", "确定退出当前账号？", object : AlertCallBack  {
+                override fun neutralButton() {
+                    LocalStore.localUser.value=null
+                    startActivity(Intent(this@AdminActivity, SplashActivity::class.java))
+                    finish()
+                }
+
+                override fun negativeButton() {}
+            })
         }
     }
 

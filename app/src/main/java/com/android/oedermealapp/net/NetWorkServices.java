@@ -7,6 +7,7 @@ import com.android.oedermealapp.bean.FoodListBean;
 import com.android.oedermealapp.bean.ResultT;
 import com.android.oedermealapp.bean.ResultModel;
 import com.android.oedermealapp.bean.UserBean;
+import com.android.oedermealapp.bean.UserList;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -30,6 +31,25 @@ public interface NetWorkServices {
             @Field("name") String name,
             @Field("imageIndex") int imageIndex,
             @Field("imageUrl") String imageUrl);
+
+    @FormUrlEncoded
+    @POST("/meal/update")
+    Call<ResultT<UserBean>> update(
+            @Field("account") String account,
+            @Field("password") String password,
+            @Field("level") int level,
+            @Field("age") int age,
+            @Field("name") String name,
+            @Field("imageIndex") int imageIndex,
+            @Field("imageUrl") String imageUrl,
+            @Field("id") int id);
+    @POST("/meal/account/all")
+    Call<ResultT<UserList>> allUser();
+
+    @FormUrlEncoded
+    @POST("/meal/delete")
+    Call<ResultT<UserBean>> delete(
+            @Field("id") int id);
 
     @FormUrlEncoded
     @POST("meal/signIn")

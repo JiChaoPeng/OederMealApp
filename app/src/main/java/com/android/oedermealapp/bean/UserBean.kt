@@ -1,5 +1,7 @@
 package com.android.oedermealapp.bean
 
+import java.io.Serializable
+
 class UserBean(
     var account: String,
     var password: String,
@@ -7,5 +9,6 @@ class UserBean(
     var level: Int,
     var age: Int,
     var imageIndex: Int,
-    var permission: Int
-)
+    var permission: Int,
+    var id: Int
+) : Serializable

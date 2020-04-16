@@ -20,6 +20,7 @@ import com.android.oedermealapp.bean.UserBean
 import com.android.oedermealapp.data.LocalStore.localUser
 import com.android.oedermealapp.net.NetWork.Companion.netWork
 import com.scwang.smartrefresh.header.DropBoxHeader
+import com.scwang.smartrefresh.header.FunGameBattleCityHeader
 import kotlinx.android.synthetic.main.activity_waiter.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,8 +52,8 @@ class WaiterActivity : BaseActivity() {
         val layout = LinearLayoutManager(this)
         layout.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layout;
-        recyclerView.adapter = adapter;
-        smartRefresh.setRefreshHeader(DropBoxHeader(this));
+        recyclerView.adapter = adapter
+        smartRefresh.setRefreshHeader(FunGameBattleCityHeader(this));
         smartRefresh.setOnRefreshListener {
             initData()
         }

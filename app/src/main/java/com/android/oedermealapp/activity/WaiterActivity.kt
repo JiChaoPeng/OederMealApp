@@ -17,8 +17,11 @@ import com.android.oedermealapp.bean.FormBean
 import com.android.oedermealapp.bean.FormListBean
 import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.bean.UserBean
+import com.android.oedermealapp.data.LocalStore
 import com.android.oedermealapp.data.LocalStore.localUser
 import com.android.oedermealapp.net.NetWork.Companion.netWork
+import com.android.oedermealapp.util.AlertCallBack
+import com.android.oedermealapp.util.AlertUtil
 import com.scwang.smartrefresh.header.DropBoxHeader
 import com.scwang.smartrefresh.header.FunGameBattleCityHeader
 import kotlinx.android.synthetic.main.activity_waiter.*
@@ -31,13 +34,13 @@ class WaiterActivity : BaseActivity() {
     private var user: UserBean? = null
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.text_black));
-        titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme));
+        titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.text_black))
+        titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme))
         user = localUser.value
         if (user == null) {
             finish()
         }
-        if (user!!.level == MainActivity.LevelWaiter|| (user!!.account == Root && isWaiter)) {
+        if (user!!.level == MainActivity.LevelWaiter || (user!!.account == Root && isWaiter)) {
             titleBar.setTitle("服务员界面")
             titleBar.setRightOptionText(
                 "添加餐品"
@@ -45,9 +48,24 @@ class WaiterActivity : BaseActivity() {
             titleBar.rightOptionEvent = {
                 startActivity(Intent(this, AddMealActivity::class.java))
             }
-        } else if (user!!.level == MainActivity.LevelCook|| (user!!.account == Root && isWaiter)) {
+        } else if (user!!.level == MainActivity.LevelCook || (user!!.account == Root && isWaiter)) {
             titleBar.setTitle("厨师界面")
             isWaiter = false
+        }
+        if (user!!.level == MainActivity.LevelWaiter || user!!.level == MainActivity.LevelCook) {
+            titleBar.setLeftOptionImageVisible(true)
+            titleBar.setLeftOptionImageResource(R.mipmap.tuichu)
+            titleBar.leftOptionEvent = {
+                AlertUtil.showAlert(this, "退出", "确定退出当前账号？", object : AlertCallBack {
+                    override fun neutralButton() {
+                        localUser.value = null
+                        startActivity(Intent(this@WaiterActivity, SplashActivity::class.java))
+                        finish()
+                    }
+
+                    override fun negativeButton() {}
+                })
+            }
         }
         val layout = LinearLayoutManager(this)
         layout.orientation = LinearLayoutManager.VERTICAL

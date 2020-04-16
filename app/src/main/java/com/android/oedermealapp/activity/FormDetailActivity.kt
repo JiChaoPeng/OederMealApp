@@ -73,8 +73,25 @@ class FormDetailActivity : BaseActivity() {
         val currentDateTimeString =
             SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.CHINA)
                 .format(Date(formBean!!.time))
-        name!!.text =
-            "下单账号 ：" + formBean!!.ownerName.toString() + "   下单时间：" + currentDateTimeString
+        name.text =
+            "下单账号 ：" + formBean!!.ownerName.toString()
+        time.text = "下单时间：$currentDateTimeString"
+        if (formBean!!.comment.isNullOrEmpty()) {
+            extra.visibility=View.GONE
+        }
+        extra.text = "下单备注：${formBean!!.comment}"
+        val statusString = when {
+            formBean!!.isFinish == 0 -> {
+                "未上餐"
+            }
+            formBean!!.isPay == 0 -> {
+                "未付款"
+            }
+            else -> {
+                "已完成"
+            }
+        }
+        status.text = "订单状态：$statusString"
         if (user!!.level == LevelNormal) {
             commit.visibility = View.GONE
         } else if (user!!.level == LevelWaiter || user!!.account == Root && WaiterActivity.isWaiter) {
@@ -115,12 +132,12 @@ class FormDetailActivity : BaseActivity() {
                     })
             }
             if (formBean!!.isPay == 1) {
-                commit.visibility=View.GONE
+                commit.visibility = View.GONE
             }
         } else if (user!!.level == LevelCook || user!!.account == Root && !WaiterActivity.isWaiter) {
             commit.visibility = View.VISIBLE
             if (formBean!!.isFinish == 1) {
-                commit.visibility=View.GONE
+                commit.visibility = View.GONE
             }
             commit.text = "确认餐品已全部上齐"
             commit.setOnClickListener { v: View? ->

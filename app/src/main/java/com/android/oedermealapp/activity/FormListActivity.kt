@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.frameworktool.base.BaseActivity
 import com.android.oedermealapp.R
 import com.android.oedermealapp.adapter.FormListAdapter
+import com.android.oedermealapp.bean.FormBean
 import com.android.oedermealapp.bean.FormListBean
 import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.data.LocalStore
@@ -38,6 +39,11 @@ class FormListActivity : BaseActivity() {
         val layout = LinearLayoutManager(this)
         layout.orientation = LinearLayoutManager.VERTICAL
         recyclerView!!.layoutManager = layout
+        adapter.viewHolderConfig.itemClickListener = {
+            if (it is FormBean) {
+                FormDetailActivity.newInstance(this, it)
+            }
+        }
         NetWork.netWork.networkServices.allForm(LocalStore.localUser.value?.account)
             .enqueue(object : Callback<ResultT<FormListBean?>?> {
                 override fun onResponse(

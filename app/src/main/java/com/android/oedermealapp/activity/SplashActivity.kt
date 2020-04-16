@@ -57,10 +57,12 @@ class SplashActivity : BaseActivity() {
             }
             user.level == LevelWaiter -> {
                 startActivity(Intent(this, WaiterActivity::class.java))
+                WaiterActivity.isWaiter=true
                 finish()
             }
             user.level == LevelCook -> {
                 startActivity(Intent(this, WaiterActivity::class.java))
+                WaiterActivity.isWaiter=false
                 finish()
             }
 

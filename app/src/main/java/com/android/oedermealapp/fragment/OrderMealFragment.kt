@@ -80,9 +80,8 @@ class OrderMealFragment : BaseFragment() {
     }
 
     override fun initData() {
-        val modelList = adapter.modelList
-        if (modelList.size > 0 && LocalStore.shopping.value != null) {
-            for (foodBean in modelList) {
+        if (adapter.modelList.size > 0 && LocalStore.shopping.value != null && LocalStore.shopping.value!!.list.size >=0 ) {
+            for (foodBean in adapter.modelList) {
                 (foodBean as? MealBean)?.num = 0
                 for (food in LocalStore.shopping.value!!.list) {
                     if (foodBean is MealBean)

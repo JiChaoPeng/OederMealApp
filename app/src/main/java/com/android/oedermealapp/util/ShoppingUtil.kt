@@ -8,18 +8,16 @@ import java.util.*
 object ShoppingUtil {
     fun removeShopping(foodBeans: List<MealBean>) {
         val shoppingValue = LocalStore.shopping.value
-        var i = 0
-        val index: MutableList<Int> = ArrayList()
         if (shoppingValue?.list != null && shoppingValue.list.size > 0) {
             for (model in foodBeans) {
-                for ((i, shoppingModel) in shoppingValue.list.withIndex()) {
-                    if (model.id == shoppingModel.id) {
-                        index.add(i)
+                run breaking@{
+                    for ((i, shoppingModel) in shoppingValue.list.withIndex()) {
+                        if (model.id == shoppingModel.id) {
+                            shoppingValue.list.removeAt(i)
+                            return@breaking
+                        }
                     }
                 }
-            }
-            for (x in index) {
-                shoppingValue.list.removeAt(x)
             }
             LocalStore.shopping.value = shoppingValue
         }

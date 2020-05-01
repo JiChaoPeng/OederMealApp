@@ -11,6 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleBar"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleBar"
+        android:background="@color/black_50_alpha" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,6 +55,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -52,7 +65,9 @@
                     android:id="@+id/loginAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColorHint="@color/white"
                     android:hint="账号： "
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -67,6 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="密码："/>
 
                 <EditText
@@ -74,6 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="密码："
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
                     android:inputType="textPassword"
                     android:textSize="14sp" />
             </LinearLayout>

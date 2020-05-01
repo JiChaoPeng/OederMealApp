@@ -43,10 +43,10 @@ class WaiterActivity : BaseActivity() {
         if (user!!.level == MainActivity.LevelWaiter || (user!!.account == Root && isWaiter)) {
             titleBar.setTitle("服务员界面")
             titleBar.setRightOptionText(
-                "添加餐品"
+                "餐品管理"
             )
             titleBar.rightOptionEvent = {
-                startActivity(Intent(this, AddMealActivity::class.java))
+                startActivity(Intent(this, MealListActivity::class.java))
             }
         } else if (user!!.level == MainActivity.LevelCook || (user!!.account == Root && isWaiter)) {
             titleBar.setTitle("厨师界面")

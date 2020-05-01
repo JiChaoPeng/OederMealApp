@@ -14,14 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.MealListActivity"></activity>
         <activity
             android:name=".activity.ManagerActivity"
             android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.SignInActivity"
-            android:screenOrientation="nosensor">
-
-        </activity>
+            android:screenOrientation="nosensor"></activity>
         <activity
             android:name=".activity.FormListActivity"
             android:screenOrientation="nosensor" />
@@ -44,7 +43,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FormDetailActivity" android:screenOrientation="nosensor"/>
+        <activity
+            android:name=".activity.FormDetailActivity"
+            android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.WaiterActivity"
             android:screenOrientation="nosensor" />

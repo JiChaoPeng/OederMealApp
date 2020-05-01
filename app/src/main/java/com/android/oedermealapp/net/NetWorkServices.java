@@ -68,6 +68,17 @@ public interface NetWorkServices {
             @Field("roomId") int roomId);
 
     @FormUrlEncoded
+    @POST("/meal/refresh")
+    Call<ResultT<MealBean>> refreshFood(
+            @Field("id") int id,
+            @Field("name") String name,
+            @Field("content") String content,
+            @Field("price") String price,
+            @Field("address") String address,
+            @Field("imageUrl") String imageUrl,
+            @Field("roomId") int roomId);
+
+    @FormUrlEncoded
     @POST("/meal/allbyid")
     Call<ResultT<FoodListBean>> allFoodByRoomId(
             @Field("roomId") String roomId);
@@ -76,6 +87,11 @@ public interface NetWorkServices {
     @POST("/meal/all")
     Call<ResultT<FoodListBean>> allFood(
             @Field("roomId") String roomId);
+
+    @FormUrlEncoded
+    @POST("/meal/del")
+    Call<ResultModel> delFood(
+            @Field("id") int id);
 
     @Multipart
     @POST("/meal/Upload")

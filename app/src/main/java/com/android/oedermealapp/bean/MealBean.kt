@@ -1,6 +1,8 @@
 package com.android.oedermealapp.bean
 
-class MealBean {
+import java.io.Serializable
+
+class MealBean:Serializable {
     var name: String
     var content: String
     var price: Int

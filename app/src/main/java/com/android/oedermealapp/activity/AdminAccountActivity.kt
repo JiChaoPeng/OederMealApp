@@ -245,7 +245,7 @@ open class AdminAccountActivity : BaseActivity() {
 
             override fun onResponse(call: Call<ResultModel>, response: Response<ResultModel>) {
                 Log.d("AddRoomActivity", response.toString())
-                if (response.body()!=null&&response.isSuccessful&&response.body()?.data!=null){
+                if (response.body()!=null&&response.body()?.isSucceed==true&&response.body()?.data!=null){
                     image = response.body()?.data
                     ToastUtils.showToast(this@AdminAccountActivity, "上传图片成功！")
                 }else{

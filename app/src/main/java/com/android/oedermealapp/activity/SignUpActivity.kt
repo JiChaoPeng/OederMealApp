@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.android.frameworktool.base.BaseActivity
+import com.android.frameworktool.util.loadImage
 import com.android.oedermealapp.R
 import com.android.oedermealapp.bean.ResultT
 import com.android.oedermealapp.bean.ResultModel
@@ -78,7 +79,7 @@ open class SignUpActivity : BaseActivity() {
                 if (response.body() != null && response.body()?.isSucceed == true) {
                     ToastUtils.showToast(this@SignUpActivity, "注册成功！")
                     finish()
-                }else{
+                } else {
                     ToastUtils.showToast(this@SignUpActivity, "注册失败 请重试！")
                 }
             }
@@ -131,10 +132,11 @@ open class SignUpActivity : BaseActivity() {
 
             override fun onResponse(call: Call<ResultModel>, response: Response<ResultModel>) {
                 Log.d("AddRoomActivity", response.toString())
-                if (response.body()!=null&&response.isSuccessful&&response.body()?.data!=null){
+                if (response.body() != null && response.body()?.isSucceed == true && response.body()?.data != null) {
                     imageUrl = response.body()?.data
+                    loadImage(imageView, imageUrl!!)
                     ToastUtils.showToast(this@SignUpActivity, "上传图片成功！")
-                }else{
+                } else {
                     ToastUtils.showToast(this@SignUpActivity, "上传图片失败 请检查权限以及图片源后重试！")
                 }
             }

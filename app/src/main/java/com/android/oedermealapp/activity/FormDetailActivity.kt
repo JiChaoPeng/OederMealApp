@@ -47,13 +47,13 @@ class FormDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         titleBar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColorWhite))
         titleBar.setBackGroundColor(ContextCompat.getColor(this, R.color.titleTheme))
-        titleBar.setTitle("订单详情")
         formBean =
             intent.getSerializableExtra(FormBeanKey) as FormBean
         user = LocalStore.localUser.value
         if (formBean == null || user == null) {
             finish()
         }
+        titleBar.setTitle("${formBean!!.seat_id}号桌订单")
         recyclerView.adapter = adapter
         val layout = LinearLayoutManager(this)
         layout.orientation = LinearLayoutManager.VERTICAL
@@ -77,7 +77,7 @@ class FormDetailActivity : BaseActivity() {
             "下单账号 ：" + formBean!!.ownerName.toString()
         time.text = "下单时间：$currentDateTimeString"
         if (formBean!!.comment.isNullOrEmpty()) {
-            extra.visibility=View.GONE
+            extra.visibility = View.GONE
         }
         extra.text = "下单备注：${formBean!!.comment}"
         val statusString = when {

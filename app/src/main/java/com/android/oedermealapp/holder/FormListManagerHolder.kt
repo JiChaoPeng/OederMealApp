@@ -26,6 +26,7 @@ class FormListManagerHolder(itemView: View) :
                 for (bean in foodListBean.list) {
                     num += bean.num
                 }
+                itemView.seat.text = "${model.seat_id}号桌"
                 itemView.name.text = foodListBean.list[0].name + "等" + num + "件餐品"
                 itemView.price.text = "下单金额：￥ " + model.price
                 itemView.foodName.text = "下单账号： " + model.ownerName

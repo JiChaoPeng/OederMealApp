@@ -69,33 +69,42 @@ class AddOrderFormActivity : BaseActivity() {
         }
         commit.onSingleClick {
 
-            NetWork.netWork.networkServices.addForm(
-                allPrice, value?.account, 1, commentEdit.text.toString(), 0,
-                Gson().toJson(FoodListBean(mealBeans)), 0, 0, System.currentTimeMillis()
-            ).enqueue(object : Callback<ResultT<FormBean?>?> {
-                override fun onResponse(
-                    call: Call<ResultT<FormBean?>?>,
-                    response: Response<ResultT<FormBean?>?>
-                ) {
-                    Log.d("BaseButterKnife1", "onResponse " + response.body())
-                    if (response.body() != null && response.body()!!.isSucceed && response.body()!!.bean != null) {
-                        removeShopping(mealBeans)
-                        Toast.makeText(this@AddOrderFormActivity, "提交成功", Toast.LENGTH_SHORT).show()
-                        finish()
-                    } else {
-                        Toast.makeText(this@AddOrderFormActivity, "提交失败 请重试", Toast.LENGTH_SHORT)
-                            .show()
+            if (seatEdit.text.toString().isNullOrEmpty()) {
+                Toast.makeText(this@AddOrderFormActivity, "请输入桌号！！", Toast.LENGTH_SHORT).show()
+            } else {
+                NetWork.netWork.networkServices.addForm(
+                    allPrice, value?.account, seatEdit.text.toString().toInt(), commentEdit.text.toString(), 0,
+                    Gson().toJson(FoodListBean(mealBeans)), 0, 0, System.currentTimeMillis()
+                ).enqueue(object : Callback<ResultT<FormBean?>?> {
+                    override fun onResponse(
+                        call: Call<ResultT<FormBean?>?>,
+                        response: Response<ResultT<FormBean?>?>
+                    ) {
+                        Log.d("BaseButterKnife1", "onResponse " + response.body())
+                        if (response.body() != null && response.body()!!.isSucceed && response.body()!!.bean != null) {
+                            removeShopping(mealBeans)
+                            Toast.makeText(this@AddOrderFormActivity, "提交成功", Toast.LENGTH_SHORT)
+                                .show()
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@AddOrderFormActivity,
+                                "提交失败 请重试",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
                     }
-                }
 
-                override fun onFailure(
-                    call: Call<ResultT<FormBean?>?>,
-                    t: Throwable
-                ) {
-                    Toast.makeText(this@AddOrderFormActivity, "网络错误", Toast.LENGTH_SHORT).show()
-                    Log.d("BaseButterKnife1", "onFailure" + t.cause + t.message)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<ResultT<FormBean?>?>,
+                        t: Throwable
+                    ) {
+                        Toast.makeText(this@AddOrderFormActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                        Log.d("BaseButterKnife1", "onFailure" + t.cause + t.message)
+                    }
+                })
+            }
         }
     }
 }

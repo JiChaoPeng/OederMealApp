@@ -38,7 +38,7 @@
         android:id="@+id/comment"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@id/commitLayout"
+        android:layout_above="@id/seatLayout"
         android:orientation="vertical">
 
         <EditText
@@ -48,6 +48,24 @@
             android:layout_marginTop="4dp"
             android:background="@color/gary"
             android:hint="请输入口味以及备注"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/seatLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@id/commitLayout"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/seatEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:inputType="number"
+            android:background="@color/gary"
+            android:hint="请输入桌号（必填）"
             android:textSize="14sp" />
     </LinearLayout>
 

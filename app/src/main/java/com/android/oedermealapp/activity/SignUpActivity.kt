@@ -45,19 +45,19 @@ open class SignUpActivity : BaseActivity() {
     }
 
     private fun initClick() {
-        uploadButton!!.setOnClickListener { v: View? ->
+        uploadButton.setOnClickListener { v: View? ->
             imageUrl = null
             val intent1 = Intent(Intent.ACTION_PICK)
             intent1.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             startActivityForResult(intent1, 100)
         }
-        signUpButton!!.setOnClickListener { v: View? -> buttonClick() }
+        signUpButton.setOnClickListener { v: View? -> buttonClick() }
     }
 
     private fun buttonClick() {
-        if (loginAccount!!.text == null || TextUtils.isEmpty(loginAccount!!.text)) {
+        if (loginAccount.text == null || TextUtils.isEmpty(loginAccount!!.text)) {
             Toast.makeText(this, "账号不能为空", Toast.LENGTH_SHORT).show()
-        } else if (loginPassword!!.text == null || TextUtils.isEmpty(loginPassword!!.text)) {
+        } else if (loginPassword.text == null || TextUtils.isEmpty(loginPassword!!.text)) {
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show()
         } else if (imageUrl == null) {
             Toast.makeText(this, "请上传头像！", Toast.LENGTH_SHORT).show()

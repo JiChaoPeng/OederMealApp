@@ -14,13 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.MealListActivity"></activity>
+        <activity android:name=".activity.MealListActivity"/>
         <activity
             android:name=".activity.ManagerActivity"
             android:screenOrientation="nosensor" />
         <activity
             android:name=".activity.SignInActivity"
-            android:screenOrientation="nosensor"></activity>
+            android:screenOrientation="nosensor"/>
         <activity
             android:name=".activity.FormListActivity"
             android:screenOrientation="nosensor" />

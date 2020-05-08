@@ -53,8 +53,10 @@ open class AdminAccountActivity : BaseActivity() {
             loginPassword.setText(user?.password)
             if (user!!.level == LevelCook) {
                 isCook.isChecked = true
+                isWaiter.isChecked = false
             } else if (user!!.level == LevelWaiter) {
                 isWaiter.isChecked = true
+                isCook.isChecked = false
             }
             image = user!!.imageUrl
         }

@@ -36,6 +36,16 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FormDetailActivity : BaseActivity() {
+
+    companion object {
+        private const val FormBeanKey = "FormBeanKey"
+        @JvmStatic
+        fun newInstance(context: Context, model: FormBean?) {
+            val intent = Intent(context, FormDetailActivity::class.java)
+            intent.putExtra(FormBeanKey, model)
+            context.startActivity(intent)
+        }
+    }
     private var formBean: FormBean? = null
     private val adapter: FormDetailAdapter = FormDetailAdapter()
     private var user: UserBean? = null
@@ -177,13 +187,4 @@ class FormDetailActivity : BaseActivity() {
         }
     }
 
-    companion object {
-        private const val FormBeanKey = "FormBeanKey"
-        @JvmStatic
-        fun newInstance(context: Context, model: FormBean?) {
-            val intent = Intent(context, FormDetailActivity::class.java)
-            intent.putExtra(FormBeanKey, model)
-            context.startActivity(intent)
-        }
-    }
 }

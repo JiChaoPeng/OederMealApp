@@ -38,7 +38,7 @@ class SplashActivity : BaseActivity() {
             )
         }
     }
-
+    //双击shift 输入类名 ctrl shift+f 搜索方法里任何东西
     override fun onResume() {
         super.onResume()
         //        0:普通用户 1：服务人员 2：厨师 3 root 密码 root 管理员

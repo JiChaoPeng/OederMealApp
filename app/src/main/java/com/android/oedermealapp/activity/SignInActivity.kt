@@ -41,8 +41,10 @@ class SignInActivity : BaseActivity() {
     }
 
     private fun initClick() {
-        loginButton!!.setOnClickListener { buttonClick() }
-        signUpButton!!.setOnClickListener {
+        loginButton.setOnClickListener {
+            buttonClick()
+        }
+        signUpButton.setOnClickListener {
             startActivity(
                 Intent(this, SignUpActivity::class.java)
             )
@@ -50,13 +52,14 @@ class SignInActivity : BaseActivity() {
     }
 
     private fun buttonClick() {
-        if (loginAccount!!.text == null || TextUtils.isEmpty(loginAccount!!.text)) {
+        if (loginAccount.text == null || TextUtils.isEmpty(loginAccount.text)) {
             ToastUtils.showToast(this@SignInActivity, "账号不能为空！")
-        } else if (loginPassword!!.text == null || TextUtils.isEmpty(loginPassword!!.text)) {
+        } else if (loginPassword.text == null || TextUtils.isEmpty(loginPassword.text)) {
             ToastUtils.showToast(this@SignInActivity, "密码不能为空！")
         } else {
-            if (loginAccount.text.toString() == MainActivity.Root && loginPassword.text.toString() ==  MainActivity.Root) {
-                LocalStore.localUser.value=UserBean( MainActivity.Root,  MainActivity.Root, "", 3, 0, 0, 2,10000)
+            if (loginAccount.text.toString() == MainActivity.Root && loginPassword.text.toString() == MainActivity.Root) {
+                LocalStore.localUser.value =
+                    UserBean(MainActivity.Root, MainActivity.Root, "", 3, 0, 0, 2, 10000)
                 finish()
             } else {
                 login()
@@ -66,8 +69,8 @@ class SignInActivity : BaseActivity() {
 
     private fun login() {
         netWork.networkServices.signIn(
-            loginAccount!!.text.toString(),
-            loginPassword!!.text.toString()
+            loginAccount.text.toString(),
+            loginPassword.text.toString()
         ).enqueue(object : Callback<ResultT<UserBean?>?> {
             override fun onResponse(
                 call: Call<ResultT<UserBean?>?>,

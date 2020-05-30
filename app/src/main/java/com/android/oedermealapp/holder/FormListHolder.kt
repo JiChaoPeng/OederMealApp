@@ -2,6 +2,7 @@ package com.android.oedermealapp.holder
 
 import android.view.View
 import com.android.frameworktool.recycler.BaseRecyclerViewHolder
+import com.android.frameworktool.util.loadImage
 import com.android.oedermealapp.R
 import com.android.oedermealapp.bean.FoodListBean
 import com.android.oedermealapp.bean.FormBean
@@ -24,6 +25,7 @@ class FormListHolder(itemView: View) : BaseRecyclerViewHolder(itemView) {
                 itemView.seat.text = "${model.seat_id}号桌"
                 itemView.name.text = foodListBean.list[0].name + "等" + num + "件餐品"
                 itemView.price.text = "￥ " + model.price
+                loadImage(itemView.image,foodListBean.list[0].image_url)
             }
             if (model.isFinish == 1 && model.isPay == 1) {
                 itemView.notFinish.visibility = View.GONE

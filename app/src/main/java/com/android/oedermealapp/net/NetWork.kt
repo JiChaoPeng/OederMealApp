@@ -23,7 +23,7 @@ class NetWork {
         private val netWorkServices: Retrofit
             get() = if (networkManager == null) {
                 networkManager =
-                    getNetworkManager("http://39.99.210.2:8080/")
+                    getNetworkManager("http://39.103.156.244:8080/")
                 networkManager!!
             } else {
                 networkManager!!
